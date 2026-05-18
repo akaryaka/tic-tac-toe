@@ -37,10 +37,43 @@
     width: 80px;
     height: 80px;
     border: 1px solid #000;
-  }
-
-  .cell.disabled {
-    pointer-events: none;
+    &.disabled {
+      pointer-events: none;
+    } 
+    &.round {
+      position: relative;
+      &::before {
+        content: 'o';
+        position: absolute;
+        font-size: 30px;
+        color: #23e123;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        align-content: center;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        background-color: #affaaf;
+      }
+    }
+    &.cross {
+      position: relative;
+      &::before {
+        content: 'x';
+        position: absolute;
+        font-size: 30px;
+        color: red;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        align-content: center;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 168, 168);
+      }
+    }
   }
 
   .btn-reset {
@@ -54,42 +87,5 @@
     &:hover {
       opacity: 0.7;
     }
-  }
-
-  .cell.round {
-    position: relative;
-  }
-
-  .cell.round::before {
-    content: 'o';
-    position: absolute;
-    font-size: 30px;
-    color: #23e123;
-    left: 50%;
-    top: 50%;
-    text-align: center;
-    align-content: center;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    background-color: #affaaf;
-  }
-
-  .cell.cross {
-    position: relative;
-  }
-  .cell.cross::before {
-    content: 'x';
-    position: absolute;
-    font-size: 30px;
-    color: red;
-    left: 50%;
-    top: 50%;
-    text-align: center;
-    align-content: center;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    background-color: rgb(255, 168, 168);
   }
 </style>
