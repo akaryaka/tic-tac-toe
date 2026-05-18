@@ -1,7 +1,5 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
-
-  const changeValue = ref('round');
+  import { changeValue } from '../constants';
 </script>
 
 <template>
@@ -10,17 +8,18 @@
       <form action="#" class="cells-header ">
         <h1 class="cells__title ">Кто ходит первым?</h1>
         <div class="cells__type-wrapper">
+          <!-- вынести в компонент -->
           <div class="cells__type ">
             <label for="round">Нолики</label>
             <input name="change" value="round" id="round" type="radio" v-model="changeValue" checked />
           </div>
+          <!-- вынести в компонент -->
           <div class="cells__type ">
             <label for="cross">Крестики</label>
             <input name="change" value="cross" id="cross" type="radio" v-model="changeValue"/>
           </div>
         </div>
         <button class="btn" type="submit" id="cells-header__btn">играть</button>
-        <p>{{ changeValue }}</p>
       </form>
     </div>
   </div>
