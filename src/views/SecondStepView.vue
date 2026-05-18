@@ -1,22 +1,15 @@
 <script lang="ts" setup>
-
+  import { buttons } from '../constants';
+  import { btnClick, reset } from '../composables/ticTacToe';
 </script>
 
 <template>
   <div class="container">
     <div class="screen-2">
       <div class="cells">
-        <div class="cell" id="cell-1"></div>
-        <div class="cell" id="cell-2"></div>
-        <div class="cell" id="cell-3"></div>
-        <div class="cell" id="cell-4"></div>
-        <div class="cell" id="cell-5"></div>
-        <div class="cell" id="cell-6"></div>
-        <div class="cell" id="cell-7"></div>
-        <div class="cell" id="cell-8"></div>
-        <div class="cell" id="cell-9"></div>
+        <div v-for="button in buttons" @click="btnClick($event, button)" class="cell" :class="button.class, button.classDisabled" :id="button.id"></div>
       </div>
-      <button class="btn-reset" id="btn-reset" type="reset">сброс</button>
+      <button @click="reset" class="btn-reset" id="btn-reset" type="reset">сброс</button>
     </div>
   </div>
 </template>
@@ -46,6 +39,10 @@
     border: 1px solid #000;
   }
 
+  .cell.disabled {
+    pointer-events: none;
+  }
+
   .btn-reset {
     border-radius: 10px;
     background-color: #e31313;
@@ -54,5 +51,45 @@
     color: #fff;
     padding: 10px;
     text-transform: uppercase;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .cell.round {
+    position: relative;
+  }
+
+  .cell.round::before {
+    content: 'o';
+    position: absolute;
+    font-size: 30px;
+    color: #23e123;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    align-content: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: #affaaf;
+  }
+
+  .cell.cross {
+    position: relative;
+  }
+  .cell.cross::before {
+    content: 'x';
+    position: absolute;
+    font-size: 30px;
+    color: red;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    align-content: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 168, 168);
   }
 </style>
