@@ -1,6 +1,8 @@
-import { countClick, changeValue, buttons } from "../constants";
- 
+import { countClick, changeValue, buttons, displayFirstStep, displaySecondStep } from "../constants";
+
 export const btnClick = function(event: any, item: any) {
+  event.preventDefault();
+  
   item.state = !item.state;
   item.classDisabled = 'disabled';
   countClick.value++;
@@ -26,4 +28,10 @@ export const reset = function() {
     item.class = '';
     item.classDisabled = '';
   })
+}
+
+export const toSecondStep = function(event: Event) {
+  event.preventDefault()
+  displayFirstStep.value = false;
+  displaySecondStep.value = true;
 }
