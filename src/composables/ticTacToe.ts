@@ -8,13 +8,13 @@ import {
   displayThirdStep,
   winCheck,
   btnActive,
+  winner,
 } from "../constants";
 
 export const btnClick = function (event: Event, item: any) {
   event.preventDefault();
 
   item.state = !item.state;
-
   item.classDisabled = "disabled";
   countClick.value++;
 
@@ -46,53 +46,45 @@ watch(btnActive, (oldvalue, newvalue) => {
     if (item.class == "cross") {
       return item.id
     } 
-    
   }).filter(item => {
     return item != undefined
   })
 
   function roundWinCheck() {
-    const roundStr = roundWinList.map(item => {
-      return item
-    })
-
     const winCheckStr = winCheck.map(item => {
-      return String(item) == String(roundStr)
+      return String(item) == String(roundWinList)
     })
 
     winCheckStr.map(item=> {
       if (item === true){
-        alert("Победили нолики!")
-        displaySecondStep.value = false;
-        displayThirdStep.value = true;
+        winner.value = "Нолики";
+        setTimeout(function() {
+          displaySecondStep.value = false;
+          displayThirdStep.value = true;
+        }, 500)
       }
     })
   }
 
   function crossWinCheck() {
-    const crossdStr = crossWinList.map(item => {
-      return item
-    })
-
     const winCheckStr = winCheck.map(item => {
-      return String(item) == String(crossdStr)
+      return String(item) == String(crossWinList)
     })
 
     winCheckStr.map(item=> {
       if (item === true){
-        alert("Победили нолики!")
-        displaySecondStep.value = false;
-        displayThirdStep.value = true;
+        winner.value = "Крестики";
+        setTimeout(function() {
+          displaySecondStep.value = false;
+          displayThirdStep.value = true;
+        }, 500)
       }
     })
   }
-  
-  console.log(roundWinCheck());
-  console.log(crossWinCheck());
 
+  roundWinCheck()
+  crossWinCheck()
 });
-
-
 
 export const reset = function () {
   countClick.value = 0;
@@ -102,6 +94,11 @@ export const reset = function () {
     item.class = "";
     item.classDisabled = "";
   });
+
+  btnActive.splice(0, btnActive.length)
+
+  displaySecondStep.value = false;
+  displayFirstStep.value = true;
 };
 
 export const toSecondStep = function (event: Event) {
