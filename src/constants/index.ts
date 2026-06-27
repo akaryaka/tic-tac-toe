@@ -9,6 +9,12 @@ export interface Button {
 
 export const changeValue = ref("round");
 export const countClick = ref<number>(0);
+export const btnActive: Button[] = reactive([]);
+export const winner = ref('');
+export const displayFirstStep = ref(true);
+export const displaySecondStep = ref(false);
+export const displayThirdStep = ref(false);
+
 export const buttons = reactive([
   { id: 1, state: false, class: "", classDisabled: "" },
   { id: 2, state: false, class: "", classDisabled: "" },
@@ -32,8 +38,3 @@ export const winCheck = [
   [7, 8, 9],
 ];
 
-export const btnActive: Button[] = reactive([]);
-
-export const displayFirstStep = ref(true);
-export const displaySecondStep = ref(false);
-export const displayThirdStep = ref(false);
