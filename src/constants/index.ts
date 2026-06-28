@@ -1,7 +1,7 @@
 import { ref, reactive } from "vue";
 
 export interface Button {
-  id: string;
+  id: number;
   state: boolean;
   class: string;
   classDisabled: string;

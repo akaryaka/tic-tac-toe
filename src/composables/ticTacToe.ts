@@ -31,7 +31,7 @@ export const btnClick = function (event: Event, item: any) {
   btnActive.push(item);
 };
   
-watch(btnActive, (oldvalue, newvalue) => {
+watch(btnActive, () => {
   const roundWinList = btnActive
     .map(item => {
       if (item.class == "round") {
@@ -49,12 +49,11 @@ watch(btnActive, (oldvalue, newvalue) => {
     }).filter(item => {
       return item != undefined
     }).sort()
-
-
+  
   function resultGame() {
     let resRound, resCross;
 
-    resRound =  winCheck.some(winItem => 
+    resRound = winCheck.some(winItem => 
       winItem.every(roundItem => roundWinList.includes(roundItem))
     );
 
@@ -66,10 +65,10 @@ watch(btnActive, (oldvalue, newvalue) => {
       setTimeout(function() {
         displaySecondStep.value = false;
         displayThirdStep.value = true;
-      }, 1500)
+      }, 500)
     }
 
-    resCross =  winCheck.some(winItem => 
+    resCross = winCheck.some(winItem => 
       winItem.every(crossItem => crossWinList.includes(crossItem))
     );
 
@@ -88,7 +87,7 @@ watch(btnActive, (oldvalue, newvalue) => {
   resultGame()
 
   function drawCheck() {    
-    if(winner.value === "" && countClick.value==9) {
+    if(winner.value === "" && countClick.value===9) {
       winner.value = "Ничья";
       setTimeout(function() {
         displaySecondStep.value = false;
