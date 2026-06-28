@@ -10,7 +10,7 @@ export interface Button {
 export const changeValue = ref("round");
 export const countClick = ref<number>(0);
 export const btnActive: Button[] = reactive([]);
-export const winner = ref('');
+export const winner = ref("");
 export const displayFirstStep = ref(true);
 export const displaySecondStep = ref(false);
 export const displayThirdStep = ref(false);
